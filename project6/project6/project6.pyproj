@@ -21,7 +21,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="account.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="bank.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="client.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="driver.py">
