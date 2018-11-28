@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="account.py">
+    <Compile Include="fund.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="bank.py">
