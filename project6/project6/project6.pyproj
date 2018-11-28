@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>dcd3a9f6-d665-4084-a764-48f1bcad588d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>node.py</StartupFile>
+    <StartupFile>driver.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

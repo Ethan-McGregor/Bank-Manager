@@ -1,6 +1,7 @@
-
+from bank import Bank
 INPUT_FILE = "input.txt"
 
 jollyBanker = Bank(INPUT_FILE)
 
-print(jollyBanker)
+print("test")
+#print(jollyBanker)

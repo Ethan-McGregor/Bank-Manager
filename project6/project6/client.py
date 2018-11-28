@@ -5,7 +5,7 @@ class Client:
         self.__lastName = lastName
         self.__id = id
         self.__funds = None
-        self.-_history
+        self.__history
 
     def deposite(self, fund, amount):
         pass
