@@ -33,10 +33,16 @@
     <Compile Include="driver.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="transaction.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tree.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="node.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="input.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

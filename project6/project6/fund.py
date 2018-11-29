@@ -1,8 +1,9 @@
 
 class Fund:
 
-    def __init__(self,fundName):
+    def __init__(self,fundName, fundNum):
         self.__fundName = fundName
+        self.__fundNum = fundNum
         self.__balance = 0
         self.__history = []
 
