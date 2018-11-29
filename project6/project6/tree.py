@@ -14,9 +14,9 @@ class BinarySearchTree:
     def get(self, key):
         currentNode = self.__root
         while currentNode != None:
-            if currentNode.getkey() == key:
+            if currentNode.getKey() == key:
                 return currentNode.getValue()
-            elif currentNode.getkey() > key:
+            elif currentNode.getKey() > key:
                 currentNode = currentNode.getLeftChild()
             else:
                 currentNode = currentNode.getRightChild()

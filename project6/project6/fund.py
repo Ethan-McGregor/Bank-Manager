@@ -19,8 +19,9 @@ class Fund:
     def addHistory(self, transaction):
         self.__history.append(transaction)
 
-    def deposite(self):
-        pass
+    def deposite(self, amount):
+        self.__balance += int(amount)
 
-    def withdraw(self):
-        pass
+    #NEED TO ACCOUNT FOR ERROR HANDLING
+    def withdraw(self, amount):
+        self.__balance -= int(amount)

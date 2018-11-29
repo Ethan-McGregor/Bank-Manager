@@ -16,11 +16,11 @@ class Bank:
 
     def makeQueue(self):
         data = open(self.__fileName)
-        q = queue.Queue()
+        transactionQueue = queue.Queue()
         for line in data:
             transaction = Transaction(line)
-            q.put(transaction)
-        return q
+            transactionQueue.put(transaction)
+        return transactionQueue
 
     def processQueue(self):
         while self.__transactions.empty() != True:
@@ -30,10 +30,19 @@ class Bank:
                 self.__clients.put(client._Client__id, client)
 
             elif transaction.getTransactionType() == "D":
-                pass
+                tempClient = self.__clients.get(transaction.getId())
+                tempClient.deposite(transaction.getFundNum(), transaction.getAmount())
             elif transaction.getTransactionType() == "W":
-                pass
+                 tempClient = self.__clients.get(transaction.getId())
+                 tempClient.withdraw(transaction.getAmount())
             elif transaction.getTransactionType() == "T":
-                pass
-            else:
-                pass
+                clientFrom = self.__clients.get(transaction.getFrom())
+                clientTo = self.__clients.get(transaction.getTo())
+                
+                if fund == 0  and transaction.getAmount() > clientFrom.getBalance(transaction.getFundNumFrom()):
+                    pass
+                elif fund == 1 and transaction.getAmount() > clientFrom.getBalance(transaction.getFundNumTo()):
+                    pass
+                else:
+                    pass
+

@@ -12,13 +12,15 @@ class Transaction:
             self.__clientId = lineSplit[3]
 
         elif lineSplit[0] == "D" or lineSplit[0] == "W":
-            self.__clientId = lineSplit[2][0:4]
-            self.__fundNumber = lineSplit[2][-1]
-            self.__amount = lineSplit[1]
+            self.__clientId = lineSplit[1][0:4]
+            self.__fundNumber = lineSplit[1][-1]
+            self.__amount = lineSplit[2]
 
         elif lineSplit[0] == "T":
-            self.__clientId1 = lineSplit[1]
-            self.__clientId2 = lineSplit[3]
+            self.__clientIdFrom = lineSplit[1]
+            self.__clientIdTo = lineSplit[3]
+            self.__fromFundNumber = lineSplit[1][-1]
+            self.__toFundNumber = lineSplit[3][-1]
             self.__amount = lineSplit[2]
         else:
             if len(lineSplit[1]) == 4:
@@ -26,6 +28,7 @@ class Transaction:
             else:
                 self.__clientId =lineSplit[1][0:4]
                 self.__fundNumber = lineSplit[1][-1]
+                
 
     def getTransactionType(self):
         return self.__transactionType
@@ -38,5 +41,27 @@ class Transaction:
 
     def getId(self):
         return self.__clientId
+
+    def getAmount(self):
+        return self.__amount
+
+    #Used in transfer
+    def getFrom(self):
+        return self.__clientIdFrom
+
+    def getTo(self):
+        return self.__clientIdTo
+
+    def getFundNumFrom(self):
+        return self.__fromFundNumber
+
+    def getFundNumTo(self):
+        return self.__toFundNumber
+
+    def getFundNum(self):
+        return self.__fundNumber
+
+
+
 
 

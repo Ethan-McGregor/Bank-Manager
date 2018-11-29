@@ -9,10 +9,10 @@ class Client:
         self.__history = []
 
     def deposite(self, fund, amount):
-        self.____firstName[fund].deposite(amount)
+        self.__funds[int(fund)].deposite(amount)
 
     def withdraw(self, fund, amount):
-        self.____firstName[fund].withdraw(amount)
+        self.__funds[int(fund)].withdraw(amount)
 
     def transfer():
         pass
@@ -23,6 +23,9 @@ class Client:
         for i in range(len(FUND_NAMES)):
             funds.append(Fund(FUND_NAMES[i], i))
         return funds
+
+    def getBalance(self, fundNum):
+        return self.__funds[fundNum].getBalance()
 
 
    
