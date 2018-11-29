@@ -45,7 +45,6 @@ class Transaction:
     def getAmount(self):
         return self.__amount
 
-    #Used in transfer
     def getFrom(self):
         return self.__clientIdFrom
 

@@ -24,4 +24,8 @@ class Fund:
 
     #NEED TO ACCOUNT FOR ERROR HANDLING
     def withdraw(self, amount):
-        self.__balance -= int(amount)
+        if int(amount) > self.__balance:
+            print("ERROR: Cannot withdraw $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance))
+        else:
+
+            self.__balance -= int(amount)

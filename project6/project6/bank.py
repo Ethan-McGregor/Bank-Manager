@@ -34,7 +34,7 @@ class Bank:
                 tempClient.deposite(transaction.getFundNum(), transaction.getAmount())
             elif transaction.getTransactionType() == "W":
                  tempClient = self.__clients.get(transaction.getId())
-                 tempClient.withdraw(transaction.getAmount())
+                 tempClient.withdraw(transaction.getFundNum(),transaction.getAmount())
             elif transaction.getTransactionType() == "T":
                 clientFrom = self.__clients.get(transaction.getFrom())
                 clientTo = self.__clients.get(transaction.getTo())
