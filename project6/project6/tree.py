@@ -32,10 +32,10 @@ class BinarySearchTree:
             return
         currentNode = self.__root
         while currentNode != None:
-            if currentNode.getkey() == key:
+            if currentNode.getKey() == key:
                 currentNode.setValue(value)
                 return
-            elif currentNode.getkey() > key:
+            elif currentNode.getKey() > key:
                 if currentNode.getLeftChild() == None:
                     newNode = Node(key, value)
                     currentNode.setLeftChild(newNode)

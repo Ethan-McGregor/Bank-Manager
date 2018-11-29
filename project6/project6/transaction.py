@@ -33,7 +33,7 @@ class Transaction:
     def getFirstName(self):
         return self.__clientFirstName
 
-    def getlastName(self):
+    def getLastName(self):
         return self.__clientLastName
 
     def getId(self):
