@@ -1,7 +1,14 @@
 from bank import Bank
-INPUT_FILE = "input.txt"
+from tree import BinarySearchTree
+from transaction import Transaction
 
-jollyBanker = Bank(INPUT_FILE)
-
-print("test")
-#print(jollyBanker)
+blah = Transaction("D 100 12345")
+# INPUT_FILE = "input.txt"
+#
+# jollyBanker = Bank(INPUT_FILE)
+#
+# print("test")
+# tree = BinarySearchTree()
+# tree.put(1,2)
+# print("test")
+# #print(jollyBanker)
