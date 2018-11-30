@@ -31,10 +31,10 @@ class Bank:
 
             elif transaction.getTransactionType() == "D":
                 tempClient = self.__clients.get(transaction.getId())
-                tempClient.deposite(transaction.getFundNum(), transaction.getAmount())
+                tempClient.deposite(transaction)
             elif transaction.getTransactionType() == "W":
                  tempClient = self.__clients.get(transaction.getId())
-                 tempClient.withdraw(transaction.getFundNum(),transaction.getAmount())
+                 tempClient.withdraw(transaction)
             elif transaction.getTransactionType() == "T":
                 clientFrom = self.__clients.get(transaction.getFrom())
                 clientTo = self.__clients.get(transaction.getTo())

@@ -8,7 +8,3 @@ jollyBanker = Bank(INPUT_FILE)
 jollyBanker.executeTransactions()
 print(jollyBanker)
 
-# tree = BinarySearchTree()
-# tree.put(1,2)
-# print("test")
-# print(jollyBanker)

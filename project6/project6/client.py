@@ -1,18 +1,23 @@
 from fund import Fund
+
 class Client:
 
-    def __init__(self,firstName = None,lastName = None,id = None):
+    def __init__(self, firstName = None, lastName = None, id = None):
         self.__firstName = firstName
         self.__lastName = lastName
         self.__id = id
         self.__funds = self.__createFunds__()
         self.__history = []
+    
+    def deposite(self, transaction):
+        fund = transaction.getFundNum()
+        self.__funds[int(fund)].deposite(transaction)
+        self.__history.append(transaction)
 
-    def deposite(self, fund, amount):
-        self.__funds[int(fund)].deposite(amount)
-
-    def withdraw(self, fund, amount):
-        self.__funds[int(fund)].withdraw(amount)
+    def withdraw(self, transaction):
+        fund = transaction.getFundNum()
+        self.__funds[int(fund)].withdraw(transaction)
+        self.__history.append(transaction)
 
     def transfer():
         pass

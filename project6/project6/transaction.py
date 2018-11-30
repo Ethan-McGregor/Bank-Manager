@@ -59,7 +59,10 @@ class Transaction:
 
     def getFundNum(self):
         return self.__fundNumber
-
+   
+    def makeError(self,error):
+        self.__error = error
+        return True
 
 
 

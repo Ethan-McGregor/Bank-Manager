@@ -19,13 +19,18 @@ class Fund:
     def addHistory(self, transaction):
         self.__history.append(transaction)
 
-    def deposite(self, amount):
+    def deposite(self, transaction):
+        amount = transaction.getAmount()
         self.__balance += int(amount)
+        self.__history.append(transaction)
 
-    #NEED TO ACCOUNT FOR ERROR HANDLING
-    def withdraw(self, amount):
+    def withdraw(self, transaction):
+        amount = transaction.getAmount()
         if int(amount) > self.__balance:
-            print("ERROR: Cannot withdraw $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance))
+            error = "ERROR: Cannot withdraw $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance)
+            print(error)
+            transaction.makeError(error)
         else:
 
             self.__balance -= int(amount)
+        self.__history.append(transaction)
