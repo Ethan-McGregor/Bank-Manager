@@ -13,6 +13,8 @@ class Bank:
     def executeTransactions(self):
         self.__transactions = self.makeQueue()
         self.processQueue()
+        #__STR__ NEEDS IMPLIMENTATION IN TREE
+        print(self.__clients)
 
     def makeQueue(self):
         data = open(self.__fileName)
