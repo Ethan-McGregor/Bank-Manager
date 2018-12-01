@@ -58,9 +58,47 @@ class BinarySearchTree:
         self.__inOrderTraversalRec(self.__root, func)
 
     def __inOrderTraversalRec__(self, theNode, func):
+        if theNode == None:
+            return
         self.__inOrderTraversalRec__(theNode.getLeftChild(), func)
         func(theNode.getValue())
         self.inOrderTraversal(theNode.getRightChild(), func)
 
+    def remove(self,key):
+        if self.__root == None:
+            return None
+        if self.__root.getKey() == key:
+            self.__size -= 1
+            if self.__root.getLeftChild() == None:
+                self.__root = self.__root.getRightChild()
+            if self.__root.getLeftChild() == None:
+                self.__root = self.__root.getLeftChild()
+            else:
+                replaceNode = self.__getAndRemoveRightSmall(self.__root)
+                self.__root.setKey(replaceNode.getKey())
+                self.__root.setValue(replaceNode.getValue())
+                return
+        else:
+            currentNode = self.__root
+            while currentNode != None:
+                if currentNode.getleftChild() and currentNode.getLeftChild().getKey() == key:
+                    foundNode = currentNode.getLeftChild()
+                    if foundNode.isLeaf():
+                        currentNode.setLeftChild(None)
+                    elif foundNode.getLeftChild() == None:
+                        currentNode.setLeftChild(foundNode.getRightChild())
+                    elif foundNode.getRightChild() == None:
+                        currentNode.setLeftChild(foundNode.getLeftChild())
+                    else:
+                        replaceNode = self.__getAndRemoveRightSmall(currentNode)
+                        foundNode.setKey(replaceNode.getKey())
+                        foundNode.setValue(replaceNode.getValue())
+                    self.__size -= 1
 
-
+                    break
+                elif currentNode.getRightChild() and currentNode.getRightChild().getKey() == key:
+                    pass
+                elif currentNode.getKey() > key:
+                    currentNode = currentNode.getLeftChild()
+                else:
+                    currentNode = currentNode.getRightChild()
