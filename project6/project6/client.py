@@ -32,6 +32,16 @@ class Client:
     def getBalance(self, fundNum):
         return self.__funds[fundNum].getBalance()
 
+    def __str__(self):
+        line = "First Name: " + str(self.__firstName) + ", Last Name: " + str(self.__lastName) + ", Account ID: " + str(self.__id)
+        for each in self.__funds:
+            line += "\n\t" + each.toString()
+        line += "\n"
+        return line
+
+    
+
+
 
    
 

@@ -13,8 +13,6 @@ class Bank:
     def executeTransactions(self):
         self.__transactions = self.makeQueue()
         self.processQueue()
-        #__STR__ NEEDS IMPLIMENTATION IN TREE
-        print(self.__clients)
 
     def makeQueue(self):
         data = open(self.__fileName)
@@ -30,13 +28,12 @@ class Bank:
             if transaction.getTransactionType() == "O":
                 client = Client(transaction.getFirstName(), transaction.getLastName(), transaction.getId())
                 self.__clients.put(client._Client__id, client)
-
             elif transaction.getTransactionType() == "D":
                 tempClient = self.__clients.get(transaction.getId())
                 tempClient.deposite(transaction)
             elif transaction.getTransactionType() == "W":
-                 tempClient = self.__clients.get(transaction.getId())
-                 tempClient.withdraw(transaction)
+                tempClient = self.__clients.get(transaction.getId())
+                tempClient.withdraw(transaction)
             elif transaction.getTransactionType() == "T":
                 clientFrom = self.__clients.get(transaction.getFrom())
                 clientTo = self.__clients.get(transaction.getTo())
@@ -47,4 +44,14 @@ class Bank:
                     pass
                 else:
                     pass
+
+    def transferMoney(self):
+        pass
+
+    def __str__(self):
+        self.__clients.inOrderTraversal(print)
+        return ""
+
+
+
 

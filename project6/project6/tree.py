@@ -55,14 +55,14 @@ class BinarySearchTree:
         self.put(key, data)
 
     def inOrderTraversal(self, func):
-        self.__inOrderTraversalRec(self.__root, func)
+        self.__inOrderTraversalRec__(self.__root, func)
 
     def __inOrderTraversalRec__(self, theNode, func):
         if theNode == None:
             return
         self.__inOrderTraversalRec__(theNode.getLeftChild(), func)
         func(theNode.getValue())
-        self.inOrderTraversal(theNode.getRightChild(), func)
+        self.__inOrderTraversalRec__(theNode.getRightChild(), func)
 
     def remove(self,key):
         if self.__root == None:
@@ -102,3 +102,5 @@ class BinarySearchTree:
                     currentNode = currentNode.getLeftChild()
                 else:
                     currentNode = currentNode.getRightChild()
+
+    

@@ -34,3 +34,8 @@ class Fund:
 
             self.__balance -= int(amount)
         self.__history.append(transaction)
+
+    def toString(self):
+        line = ""
+        line += "Fund: " + str(self.__fundName) + ", Balance: " + str(self.__balance)
+        return line

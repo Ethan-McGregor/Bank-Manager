@@ -29,7 +29,6 @@ class Transaction:
                 self.__clientId =lineSplit[1][0:4]
                 self.__fundNumber = lineSplit[1][-1]
                 
-
     def getTransactionType(self):
         return self.__transactionType
 
