@@ -35,18 +35,28 @@ class Bank:
                 tempClient = self.__clients.get(transaction.getId())
                 tempClient.withdraw(transaction)
             elif transaction.getTransactionType() == "T":
-                clientFrom = self.__clients.get(transaction.getFrom())
-                clientTo = self.__clients.get(transaction.getTo())
-                
-                if fund == 0  and transaction.getAmount() > clientFrom.getBalance(transaction.getFundNumFrom()):
-                    pass
-                elif fund == 1 and transaction.getAmount() > clientFrom.getBalance(transaction.getFundNumTo()):
-                    pass
-                else:
-                    pass
+                self.__transferMoney__(transaction)
 
-    def transferMoney(self):
-        pass
+    def __transferMoney__(self, transaction):
+        oppFundNum = [1,0]
+        clientFrom = self.__clients.get(transaction.getFrom())
+        clientTo = self.__clients.get(transaction.getTo())
+                
+        if transaction.getFundNumFrom() == "0"  or transaction.getFundNumFrom() == "1":
+            test = transaction.getFrom()
+            if int(transaction.getAmount()) > clientFrom.getBalance(int(transaction.getFundNumFrom())):
+                if int(transaction.getAmount()) <= clientFrom.getBalance(int(transaction.getFundNumFrom())) + clientFrom.getBalance(int(oppFundNum[int(transaction.getFundNumFrom())])):    
+                   transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
+                   transactionWithdraw1 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(clientFrom.getBalance(transaction.getFundNumFrom())))
+                   transactionWithdraw2 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(int(transaction.getAmount()) - int(clientFrom.getBalance(transaction.getFundNumFrom()))))
+                   clientFrom.withdraw(transactionWithdraw1)
+                   clientFrom.withdraw(transactionWithdraw2)
+                   clientTo.deposite(transactionDeposite)
+        else:
+            transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
+            transactionWithdraw = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(transaction.getAmount()))
+            clientFrom.withdraw(transactionWithdraw)
+            clientTo.deposite(transactionDeposite)
 
     def __str__(self):
         self.__clients.inOrderTraversal(print)

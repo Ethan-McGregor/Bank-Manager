@@ -30,7 +30,10 @@ class Client:
         return funds
 
     def getBalance(self, fundNum):
-        return self.__funds[fundNum].getBalance()
+        return self.__funds[int(fundNum)].getBalance()
+
+    def getId(self):
+        return self.__id
 
     def __str__(self):
         line = "First Name: " + str(self.__firstName) + ", Last Name: " + str(self.__lastName) + ", Account ID: " + str(self.__id)

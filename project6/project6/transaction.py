@@ -17,8 +17,8 @@ class Transaction:
             self.__amount = lineSplit[2]
 
         elif lineSplit[0] == "T":
-            self.__clientIdFrom = lineSplit[1]
-            self.__clientIdTo = lineSplit[3]
+            self.__clientIdFrom = lineSplit[1][0:4]
+            self.__clientIdTo = lineSplit[3][0:4]
             self.__fromFundNumber = lineSplit[1][-1]
             self.__toFundNumber = lineSplit[3][-1]
             self.__amount = lineSplit[2]
