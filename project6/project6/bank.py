@@ -44,8 +44,7 @@ class Bank:
                 
         if transaction.getFundNumFrom() == "0"  or transaction.getFundNumFrom() == "1":
             test = transaction.getFrom()
-            if int(transaction.getAmount()) > clientFrom.getBalance(int(transaction.getFundNumFrom())):
-                if int(transaction.getAmount()) <= clientFrom.getBalance(int(transaction.getFundNumFrom())) + clientFrom.getBalance(int(oppFundNum[int(transaction.getFundNumFrom())])):    
+            if int(transaction.getAmount()) > clientFrom.getBalance(int(transaction.getFundNumFrom())) and int(transaction.getAmount()) <= clientFrom.getBalance(int(transaction.getFundNumFrom())) + clientFrom.getBalance(int(oppFundNum[int(transaction.getFundNumFrom())])):    
                    transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
                    transactionWithdraw1 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(clientFrom.getBalance(transaction.getFundNumFrom())))
                    transactionWithdraw2 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(int(transaction.getAmount()) - int(clientFrom.getBalance(transaction.getFundNumFrom()))))
