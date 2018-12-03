@@ -19,9 +19,6 @@ class Client:
         self.__funds[int(fund)].withdraw(transaction)
         self.__history.append(transaction)
 
-    def transfer():
-        pass
-
     def __createFunds__(self):
         FUND_NAMES = ["Money Market","Prime Money Market","Long-Term Bond","Short-Term Bond","500 Index Fund","Capital Value Fund","Growth Equity Fund","Growth Index Fund","Value Fund","Value Stock Index"]
         funds = []
@@ -34,6 +31,15 @@ class Client:
 
     def getId(self):
         return self.__id
+
+    def getHistory(self,transaction):
+        self.__history.append(transaction)
+        return self.__history
+
+    def getFund(self,fundNum,transaction):
+        self.__history.apppend(transaction)
+        self.__funds[fundNum].addHistory(transaction)
+        return self.__funds[fundNum]
 
     def __str__(self):
         line = "First Name: " + str(self.__firstName) + ", Last Name: " + str(self.__lastName) + ", Account ID: " + str(self.__id)
