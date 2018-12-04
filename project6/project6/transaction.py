@@ -5,7 +5,7 @@ class Transaction:
 
         lineSplit = line.split()
         self.__transactionType = lineSplit[0]
-
+        self.__error = None
         if lineSplit[0] == "O":
             self.__clientFirstName = lineSplit[2]
             self.__clientLastName = lineSplit[1]
@@ -25,6 +25,7 @@ class Transaction:
         else:
             if len(lineSplit[1]) == 4:
                 self.__clientId = lineSplit[1]
+                self.__fundNumber = None
             else:
                 self.__clientId =lineSplit[1][0:4]
                 self.__fundNumber = lineSplit[1][-1]
@@ -65,6 +66,7 @@ class Transaction:
 
     def __str__(self):
         line = ""
+
         if self.__transactionType == "O":
             line += "Account Opened: " + str(self.__clientFirstName) + " " + str(self.__clientLastName) + ", ID: " + str(self.__clientId)
         elif self.__transactionType == "D":
@@ -73,7 +75,10 @@ class Transaction:
             line += "Withtdraw Amount: " + str(self.__amount) + " To fund:" + str(self.__fundNumber) + ", Account ID: " + str(self.__clientId)
         elif self.__transactionType == "H":
             line += "History acess: " + ", Account ID: " + str(self.__clientId)
-        return line
+
+        if self.__error != None:
+            line += "\n\t" + self.__error
+        return "\t" + line
 
 
 

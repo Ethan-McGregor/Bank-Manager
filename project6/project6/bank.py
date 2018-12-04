@@ -37,11 +37,14 @@ class Bank:
             elif transaction.getTransactionType() == "T":
                 self.__transferMoney__(transaction)
             elif transaction.getTransactionType() == "H":
-                if len(transaction.getId()) == 4:
+                if transaction.getFundNum() == None:
+                    print("\nHistory for Clinet #" + str(transaction.getId()))
                     for history in self.__clients.get(transaction.getId()).getHistory(transaction):
+                        #GET history adds to history before it prints
                         print(history)
-                elif len(transaction.getId()) == 5:
-                     for history in self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction):
+                elif transaction.getFundNum() != None:
+                     print("\nHistory for Clinet #" + str(transaction.getId()) + ", Fund #" + str(transaction.getFundNum()))
+                     for history in self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory():
                         print(history)
                 else:
                     print("ERROR: Invalid ID")
@@ -69,6 +72,7 @@ class Bank:
             clientTo.deposite(transactionDeposite)
 
     def __str__(self):
+        print("\n***Printing all client accounts***")
         self.__clients.inOrderTraversal(print)
         return ""
 

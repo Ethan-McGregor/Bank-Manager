@@ -37,9 +37,9 @@ class Client:
         return self.__history
 
     def getFund(self,fundNum,transaction):
-        self.__history.apppend(transaction)
-        self.__funds[fundNum].addHistory(transaction)
-        return self.__funds[fundNum]
+        self.__history.append(transaction)
+        self.__funds[int(fundNum)].addHistory(transaction)
+        return self.__funds[int(fundNum)]
 
     def __str__(self):
         line = "First Name: " + str(self.__firstName) + ", Last Name: " + str(self.__lastName) + ", Account ID: " + str(self.__id)
