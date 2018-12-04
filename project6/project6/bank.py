@@ -39,13 +39,20 @@ class Bank:
             elif transaction.getTransactionType() == "H":
                 if transaction.getFundNum() == None:
                     print("\nHistory for Clinet #" + str(transaction.getId()))
-                    for history in self.__clients.get(transaction.getId()).getHistory(transaction):
-                        #GET history adds to history before it prints
-                        print(history)
+                    if len(self.__clients.get(transaction.getId()).getHistory()) == 0:
+                        print("\tNo transaction history")
+                    else:
+                        for history in self.__clients.get(transaction.getId()).getHistory():
+                            print(history)
+                    self.__clients.get(transaction.getId()).addHistory(transaction)
                 elif transaction.getFundNum() != None:
                      print("\nHistory for Clinet #" + str(transaction.getId()) + ", Fund #" + str(transaction.getFundNum()))
-                     for history in self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory():
-                        print(history)
+                     if len(self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory()) == 0:
+                        print("\tNo transaction history")
+                     else:
+                        for history in self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory():
+                            print(history)
+                     self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).addHistory(transaction)
                 else:
                     print("ERROR: Invalid ID")
 

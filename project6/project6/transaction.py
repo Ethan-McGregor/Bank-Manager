@@ -70,9 +70,9 @@ class Transaction:
         if self.__transactionType == "O":
             line += "Account Opened: " + str(self.__clientFirstName) + " " + str(self.__clientLastName) + ", ID: " + str(self.__clientId)
         elif self.__transactionType == "D":
-             line += "Deposite Amount: " + str(self.__amount) + " To fund:" + str(self.__fundNumber) + ", Account ID: " + str(self.__clientId)
+             line += "Deposite Amount: " + str(self.__amount) + " To fund: #" + str(self.__fundNumber) + ", Account ID: " + str(self.__clientId)
         elif self.__transactionType == "W":
-            line += "Withtdraw Amount: " + str(self.__amount) + " To fund:" + str(self.__fundNumber) + ", Account ID: " + str(self.__clientId)
+            line += "Withtdraw Amount: " + str(self.__amount) + " From fund: #" + str(self.__fundNumber) + ", Account ID: " + str(self.__clientId)
         elif self.__transactionType == "H":
             line += "History acess: " + ", Account ID: " + str(self.__clientId)
 

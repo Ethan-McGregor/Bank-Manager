@@ -32,13 +32,13 @@ class Client:
     def getId(self):
         return self.__id
 
-    def getHistory(self,transaction):
-        self.__history.append(transaction)
+    def getHistory(self):
         return self.__history
 
-    def getFund(self,fundNum,transaction):
+    def addHistory(self,transaction):
         self.__history.append(transaction)
-        self.__funds[int(fundNum)].addHistory(transaction)
+
+    def getFund(self,fundNum,transaction):
         return self.__funds[int(fundNum)]
 
     def __str__(self):
