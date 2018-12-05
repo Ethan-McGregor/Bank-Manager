@@ -21,7 +21,7 @@ class Bank:
             transaction = Transaction(line)
             transactionQueue.put(transaction)
         return transactionQueue
-
+    #ADD ERROR CORRECTNS HERE*********************************************************************************
     def processQueue(self):
         while self.__transactions.empty() != True:
             transaction = self.__transactions.get()

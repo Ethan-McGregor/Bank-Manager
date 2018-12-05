@@ -22,13 +22,18 @@ class Transaction:
             self.__fromFundNumber = lineSplit[1][-1]
             self.__toFundNumber = lineSplit[3][-1]
             self.__amount = lineSplit[2]
-        else:
+        elif lineSplit[0] == "H":
             if len(lineSplit[1]) == 4:
                 self.__clientId = lineSplit[1]
                 self.__fundNumber = None
             else:
                 self.__clientId =lineSplit[1][0:4]
                 self.__fundNumber = lineSplit[1][-1]
+        else:
+            print("Invalid transaction type: " + str(lineSplit[0]))
+            self.__clientFirstName = "ERROR"
+            self.__clientLastName = "ERROR"
+            self.__clientId = "ERROR"
                 
     def getTransactionType(self):
         return self.__transactionType
