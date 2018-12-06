@@ -98,6 +98,11 @@ class Bank:
                 error += "ERROR: ID improper length"
             elif self.__clients.get(transaction.getId()) == None:
                 error += "ERROR: Invalid ID"
+        elif transaction.getTransactionType() == "T":
+           if len(transaction.getFrom()) != 4 or len(transaction.getTo()) != 4:
+                error += "ERROR: ID improper length"
+           elif self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
+                error += "ERROR: Invalid ID"
         return error
 
     def __str__(self):
