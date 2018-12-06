@@ -6,6 +6,12 @@ class Transaction:
         lineSplit = line.split()
         self.__transactionType = lineSplit[0]
         self.__error = None
+        self.__clientFirstName = None
+        self.__clientLastName = None
+        self.__clientId = None
+        self.__clientIdFrom = None
+        self.__clientIdTo = None
+
         if lineSplit[0] == "O":
             self.__clientFirstName = lineSplit[2]
             self.__clientLastName = lineSplit[1]
@@ -83,7 +89,7 @@ class Transaction:
 
         if self.__error != None:
             line += "\n\t" + self.__error
-        return "\t" + line
+        return "   " + line
 
 
 

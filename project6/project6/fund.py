@@ -31,8 +31,8 @@ class Fund:
             print(error)
             transaction.makeError(error)
         else:
-
             self.__balance -= int(amount)
+
         self.__history.append(transaction)
 
     def toString(self):
