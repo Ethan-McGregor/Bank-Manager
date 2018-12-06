@@ -1,5 +1,5 @@
 from fund import Fund
-
+from transaction import Transaction
 class Client:
 
     def __init__(self, firstName = None, lastName = None, id = None):
@@ -15,9 +15,17 @@ class Client:
         self.__history.append(transaction)
 
     def withdraw(self, transaction):
+        specialFunds = [1,0,3,2]
         fund = transaction.getFundNum()
-        self.__funds[int(fund)].withdraw(transaction)
-        self.__history.append(transaction)
+        if transaction.getFundNum() == "0"  or transaction.getFundNum() == "1" or transaction.getFundNum() == "2"or transaction.getFundNum() == "3":
+            if int(transaction.getAmount()) > self.__funds[int(transaction.getFundNum())].getBalance() and int(transaction.getAmount()) <=  self.__funds[int(transaction.getFundNum())].getBalance() +  self.__funds[specialFunds[int(transaction.getFundNum())]].getBalance():    
+                transactionWithdraw1 = Transaction("W " + str(transaction.getId()) + str(transaction.getFundNum()) + " " + str(self.__funds[int(transaction.getFundNum())].getBalance()))
+                transactionWithdraw2 = Transaction("W " + str(transaction.getId()) + str(specialFunds[int(transaction.getFundNum())]) + " " +  str(int(transaction.getAmount()) - int(self.__funds[int(transaction.getFundNum())].getBalance())))
+                self.__funds[int(fund)].withdraw(transactionWithdraw1)
+                self.__funds[specialFunds[int(fund)]].withdraw(transactionWithdraw2)
+        else:
+            self.__funds[int(fund)].withdraw(transaction)
+            self.__history.append(transaction)
 
     def __createFunds__(self):
         FUND_NAMES = ["Money Market","Prime Money Market","Long-Term Bond","Short-Term Bond","500 Index Fund","Capital Value Fund","Growth Equity Fund","Growth Index Fund","Value Fund","Value Stock Index"]
