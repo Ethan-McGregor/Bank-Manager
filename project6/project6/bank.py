@@ -45,7 +45,10 @@ class Bank:
                 else:
                     print(checkError)
             elif transaction.getTransactionType() == "T":
-                self.__transferMoney__(transaction)
+                if checkError == "":
+                    self.__transferMoney__(transaction)
+                else:
+                    print(checkError)
             elif transaction.getTransactionType() == "H":
                 if checkError == "":
                     if transaction.getFundNum() == None:
@@ -87,20 +90,20 @@ class Bank:
 
     def __checkIdError__(self, transaction):
         error = ""
-        if transaction.getId() != None and len(transaction.getId()) != 4:
+        if transaction.getTransactionType() == "O" and transaction.getError() != None:
             error += "\nERROR: ID improper length"
         elif transaction.getTransactionType() == "O" and self.__clients.get(transaction.getId()) != None:
             error += "\nERROR: ID already in use"
         elif transaction.getTransactionType() == "H" and self.__clients.get(transaction.getId()) == None:
             error += "\nERROR: Cannot print history, client #"+ str(transaction.getId()) + " does not exist"
         elif transaction.getTransactionType() == "D" or transaction.getTransactionType() == "W":
-            if len(transaction.getId()) != 4:
+            if transaction.getError() != None:
                 error += "\nERROR: ID improper length"
             elif self.__clients.get(transaction.getId()) == None:
                 error += "\nERROR: Invalid ID"
         elif transaction.getTransactionType() == "T":
-           if len(transaction.getFrom()) != 4 or len(transaction.getTo()) != 4:
-                error += "\nERROR: ID improper length"
+           if transaction.getError() != None:
+                error +=  str(transaction.getError())
            elif self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
                 error += "\nERROR: Invalid ID"
         if error !="":

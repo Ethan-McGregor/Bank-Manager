@@ -21,13 +21,22 @@ class Fund:
 
     def deposite(self, transaction):
         amount = transaction.getAmount()
-        self.__balance += int(amount)
-        self.__history.append(transaction)
+        if int(amount) < 0:
+            error = "ERROR: Cannot deposite negative funds $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance)
+            print(error)
+            transaction.makeError(error)
+        else:
+            self.__balance += int(amount)
+            self.__history.append(transaction)
 
     def withdraw(self, transaction):
         amount = transaction.getAmount()
         if int(amount) > self.__balance:
             error = "ERROR: Cannot withdraw $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance)
+            print(error)
+            transaction.makeError(error)
+        elif int(amount) < 0:
+            error = "ERROR: Cannot withdraw negative funds $" + str(amount)+ " from: " + self.__fundName + ", Balance is: " + str(self.__balance)
             print(error)
             transaction.makeError(error)
         else:

@@ -14,22 +14,27 @@ class Transaction:
         self.__transfer = False
 
         if lineSplit[0] == "O":
+            self.checkIdError(lineSplit[3])
             self.__clientFirstName = lineSplit[2]
             self.__clientLastName = lineSplit[1]
             self.__clientId = lineSplit[3]
 
         elif lineSplit[0] == "D" or lineSplit[0] == "W":
+            self.checkIdError(lineSplit[1])
             self.__clientId = lineSplit[1][0:4]
             self.__fundNumber = lineSplit[1][-1]
             self.__amount = lineSplit[2]
 
         elif lineSplit[0] == "T":
+            self.checkIdError(lineSplit[1])
+            self.checkIdError(lineSplit[3])
             self.__clientIdFrom = lineSplit[1][0:4]
             self.__clientIdTo = lineSplit[3][0:4]
             self.__fromFundNumber = lineSplit[1][-1]
             self.__toFundNumber = lineSplit[3][-1]
             self.__amount = lineSplit[2]
         elif lineSplit[0] == "H":
+            self.checkIdError(lineSplit[1])
             if len(lineSplit[1]) == 4:
                 self.__clientId = lineSplit[1]
                 self.__fundNumber = None
@@ -42,6 +47,13 @@ class Transaction:
             self.__clientLastName = "ERROR"
             self.__clientId = "ERROR"
                 
+    def checkIdError(self, id):
+        falied = False
+        if len(id) > 5 or len(id) < 4:
+            self.makeError("ERROR: Id is improper length")
+            falied = True
+        return falied
+
     def getTransactionType(self):
         return self.__transactionType
 
@@ -75,6 +87,8 @@ class Transaction:
     def makeError(self,error):
         self.__error = error
         return True
+    def getError(self):
+        return self.__error
 
     def setTransfer(self):
         self.__transfer = True
