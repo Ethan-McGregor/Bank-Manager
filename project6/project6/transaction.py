@@ -11,6 +11,7 @@ class Transaction:
         self.__clientId = None
         self.__clientIdFrom = None
         self.__clientIdTo = None
+        self.__transfer = False
 
         if lineSplit[0] == "O":
             self.__clientFirstName = lineSplit[2]
@@ -75,6 +76,12 @@ class Transaction:
         self.__error = error
         return True
 
+    def setTransfer(self):
+        self.__transfer = True
+
+    def getIsTransfer(self):
+        return self.__transfer
+
     def __str__(self):
         line = ""
 
@@ -86,9 +93,12 @@ class Transaction:
             line += "Withtdraw Amount: " + str(self.__amount) + " From fund: #" + str(self.__fundNumber) 
         elif self.__transactionType == "H":
             line += "History acess: " + ", Account ID: " + str(self.__clientId)
-
+        
         if self.__error != None:
             line += "\n\t" + self.__error
+
+        if self.__transfer == True:
+                line += " From Trasnfer Request"
         return "   " + line
 
 

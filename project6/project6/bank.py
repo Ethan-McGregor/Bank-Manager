@@ -78,6 +78,8 @@ class Bank:
         if error == "":
             transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
             transactionWithdraw = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(transaction.getAmount()))
+            transactionDeposite.setTransfer()
+            transactionWithdraw.setTransfer()
             clientFrom.withdraw(transactionWithdraw)
             clientTo.deposite(transactionDeposite)
         else:
@@ -91,6 +93,11 @@ class Bank:
             error += "ERROR: ID already in use"
         elif transaction.getTransactionType() == "H" and self.__clients.get(transaction.getId()) == None:
             error += "ERROR: Cannot print history, client #"+ str(transaction.getId()) + " does not exist"
+        elif transaction.getTransactionType() == "D" or transaction.getTransactionType() == "W":
+            if len(transaction.getId()) != 4:
+                error += "ERROR: ID improper length"
+            elif self.__clients.get(transaction.getId()) == None:
+                error += "ERROR: Invalid ID"
         return error
 
     def __str__(self):
