@@ -110,3 +110,5 @@ class Bank:
         self.__clients.inOrderTraversal(print)
         return ""
 
+    def getTree(self):
+        return self.__clients

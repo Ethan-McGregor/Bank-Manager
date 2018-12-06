@@ -84,7 +84,6 @@ class Transaction:
 
     def __str__(self):
         line = ""
-
         if self.__transactionType == "O":
             line += "Account Opened: " + str(self.__clientFirstName) + " " + str(self.__clientLastName) + ", ID: " + str(self.__clientId)
         elif self.__transactionType == "D":
