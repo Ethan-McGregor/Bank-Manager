@@ -48,6 +48,11 @@ class Client:
 
     def getFund(self,fundNum,transaction):
         return self.__funds[int(fundNum)]
+    def getFirstName(self):
+        return self.__firstName
+
+    def getLastName(self):
+       return self.__lastName
 
     def __str__(self):
         line = "First Name: " + str(self.__firstName) + ", Last Name: " + str(self.__lastName) + ", Account ID: " + str(self.__id)

@@ -49,7 +49,7 @@ class Bank:
             elif transaction.getTransactionType() == "H":
                 if checkError == "":
                     if transaction.getFundNum() == None:
-                        print("\nTransaction history for Clinet #" + str(transaction.getId()))
+                        print("\nTransaction history for client: " + str(tempClient.getFirstName())+" " + str(tempClient.getLastName()) +  ", Id #"  + str(transaction.getId()))
                         if len(self.__clients.get(transaction.getId()).getHistory()) == 0:
                             print("\tNo transaction history")
                         else:
@@ -57,7 +57,7 @@ class Bank:
                                 print(history)
                         self.__clients.get(transaction.getId()).addHistory(transaction)
                     elif transaction.getFundNum() != None:
-                         print("\nTransaction history for Clinet #" + str(transaction.getId()) + ", Fund #" + str(transaction.getFundNum()))
+                         print("\nTransaction history for client: " + str(tempClient.getFirstName())+" " + str(tempClient.getLastName()) +  ", Id #"  + str(transaction.getId()))
                          if len(self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory()) == 0:
                             print("\tNo transaction history")
                          else:
@@ -66,6 +66,7 @@ class Bank:
                          self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).addHistory(transaction)
                 else:
                     print(checkError)
+
     def __transferMoney__(self, transaction):
         clientFrom = self.__clients.get(transaction.getFrom())
         clientTo = self.__clients.get(transaction.getTo())
