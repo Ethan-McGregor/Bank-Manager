@@ -90,21 +90,17 @@ class Bank:
 
     def __checkIdError__(self, transaction):
         error = ""
-        if transaction.getTransactionType() == "O" and transaction.getError() != None:
+        if transaction.getError() != None:
             error += "\nERROR: ID improper length"
         elif transaction.getTransactionType() == "O" and self.__clients.get(transaction.getId()) != None:
             error += "\nERROR: ID already in use"
         elif transaction.getTransactionType() == "H" and self.__clients.get(transaction.getId()) == None:
             error += "\nERROR: Cannot print history, client #"+ str(transaction.getId()) + " does not exist"
         elif transaction.getTransactionType() == "D" or transaction.getTransactionType() == "W":
-            if transaction.getError() != None:
-                error += "\nERROR: ID improper length"
-            elif self.__clients.get(transaction.getId()) == None:
+            if self.__clients.get(transaction.getId()) == None:
                 error += "\nERROR: Invalid ID"
         elif transaction.getTransactionType() == "T":
-           if transaction.getError() != None:
-                error +=  str(transaction.getError())
-           elif self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
+            if self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
                 error += "\nERROR: Invalid ID"
         if error !="":
             error += "\n\tTransation attempted: " + str(transaction.getTransactionType()) + ", Id: " +  str(transaction.getId())
