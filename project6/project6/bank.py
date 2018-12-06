@@ -57,7 +57,7 @@ class Bank:
                                 print(history)
                         self.__clients.get(transaction.getId()).addHistory(transaction)
                     elif transaction.getFundNum() != None:
-                         print("\nTransaction history for client: " + str(tempClient.getFirstName())+" " + str(tempClient.getLastName()) +  ", Id #"  + str(transaction.getId()))
+                         print("\nTransaction history for client: " + str(tempClient.getFirstName())+" " + str(tempClient.getLastName()) +  ", Id #"  + str(transaction.getId()) + ", Fund #" + str(transaction.getFundNum()))
                          if len(self.__clients.get(transaction.getId()).getFund(transaction.getFundNum(),transaction).getHistory()) == 0:
                             print("\tNo transaction history")
                          else:
@@ -72,9 +72,9 @@ class Bank:
         clientTo = self.__clients.get(transaction.getTo())
         error = ""
         if self.__clients.get(transaction.getFrom()) == None :
-            error += "ERROR: Transfer failed clinet #" + str(transaction.getFrom()) + " does not exsist"
+            error += "\nERROR: Transfer failed clinet #" + str(transaction.getFrom()) + " does not exsist"
         if self.__clients.get(transaction.getTo()) == None:
-            error += "ERROR: Transfer failed clinet #" + str(transaction.getTo()) + " does not exsist"
+            error += "\nERROR: Transfer failed clinet #" + str(transaction.getTo()) + " does not exsist"
         if error == "":
             transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
             transactionWithdraw = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(transaction.getAmount()))
@@ -88,21 +88,21 @@ class Bank:
     def __checkIdError__(self, transaction):
         error = ""
         if transaction.getId() != None and len(transaction.getId()) != 4:
-            error += "ERROR: ID improper length"
+            error += "\nERROR: ID improper length"
         elif transaction.getTransactionType() == "O" and self.__clients.get(transaction.getId()) != None:
-            error += "ERROR: ID already in use"
+            error += "\nERROR: ID already in use"
         elif transaction.getTransactionType() == "H" and self.__clients.get(transaction.getId()) == None:
-            error += "ERROR: Cannot print history, client #"+ str(transaction.getId()) + " does not exist"
+            error += "\nERROR: Cannot print history, client #"+ str(transaction.getId()) + " does not exist"
         elif transaction.getTransactionType() == "D" or transaction.getTransactionType() == "W":
             if len(transaction.getId()) != 4:
-                error += "ERROR: ID improper length"
+                error += "\nERROR: ID improper length"
             elif self.__clients.get(transaction.getId()) == None:
-                error += "ERROR: Invalid ID"
+                error += "\nERROR: Invalid ID"
         elif transaction.getTransactionType() == "T":
            if len(transaction.getFrom()) != 4 or len(transaction.getTo()) != 4:
-                error += "ERROR: ID improper length"
+                error += "\nERROR: ID improper length"
            elif self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
-                error += "ERROR: Invalid ID"
+                error += "\nERROR: Invalid ID"
         return error
 
     def __str__(self):
