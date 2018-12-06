@@ -23,6 +23,11 @@ class Client:
                 transactionWithdraw2 = Transaction("W " + str(transaction.getId()) + str(specialFunds[int(transaction.getFundNum())]) + " " +  str(int(transaction.getAmount()) - int(self.__funds[int(transaction.getFundNum())].getBalance())))
                 self.__funds[int(fund)].withdraw(transactionWithdraw1)
                 self.__funds[specialFunds[int(fund)]].withdraw(transactionWithdraw2)
+                self.__history.append(transactionWithdraw1)
+                self.__history.append(transactionWithdraw2)
+            else:
+                self.__funds[int(fund)].withdraw(transaction)
+                self.__history.append(transaction)
         else:
             self.__funds[int(fund)].withdraw(transaction)
             self.__history.append(transaction)

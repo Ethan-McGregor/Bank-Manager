@@ -103,12 +103,11 @@ class Bank:
                 error += "\nERROR: ID improper length"
            elif self.__clients.get(transaction.getFrom()) == None or self.__clients.get(transaction.getTo()) == None:
                 error += "\nERROR: Invalid ID"
-        return error
+        if error !="":
+            error += "\n\tTransation attempted: " + str(transaction.getTransactionType()) + ", Id: " +  str(transaction.getId())
+        return error 
 
     def __str__(self):
         print("\n***Printing all client accounts***")
         self.__clients.inOrderTraversal(print)
         return ""
-
-    def getTree(self):
-        return self.__clients
