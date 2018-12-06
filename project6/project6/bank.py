@@ -70,24 +70,30 @@ class Bank:
         oppFundNum = [1,0]
         clientFrom = self.__clients.get(transaction.getFrom())
         clientTo = self.__clients.get(transaction.getTo())
-        
+        error = ""
+        if self.__clients.get(transaction.getFrom()) == None :
+            error += "ERROR: Transfer failed clinet #" + str(transaction.getFrom()) + " does not exsist"
+        if self.__clients.get(transaction.getTo()) == None:
+            error += "ERROR: Transfer failed clinet #" + str(transaction.getTo()) + " does not exsist"
         #Handles fund 0 and 1 overdraw feature
-        if transaction.getFundNumFrom() == "0"  or transaction.getFundNumFrom() == "1":
-            test = transaction.getFrom()
-            if int(transaction.getAmount()) > clientFrom.getBalance(int(transaction.getFundNumFrom())) and int(transaction.getAmount()) <= clientFrom.getBalance(int(transaction.getFundNumFrom())) + clientFrom.getBalance(int(oppFundNum[int(transaction.getFundNumFrom())])):    
-                   transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
-                   transactionWithdraw1 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(clientFrom.getBalance(transaction.getFundNumFrom())))
-                   transactionWithdraw2 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(int(transaction.getAmount()) - int(clientFrom.getBalance(transaction.getFundNumFrom()))))
-                   clientFrom.withdraw(transactionWithdraw1)
-                   clientFrom.withdraw(transactionWithdraw2)
-                   clientTo.deposite(transactionDeposite)
-        #Standard Trasnfer
+        if error == "":
+            if transaction.getFundNumFrom() == "0"  or transaction.getFundNumFrom() == "1":
+                test = transaction.getFrom()
+                if int(transaction.getAmount()) > clientFrom.getBalance(int(transaction.getFundNumFrom())) and int(transaction.getAmount()) <= clientFrom.getBalance(int(transaction.getFundNumFrom())) + clientFrom.getBalance(int(oppFundNum[int(transaction.getFundNumFrom())])):    
+                       transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
+                       transactionWithdraw1 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(clientFrom.getBalance(transaction.getFundNumFrom())))
+                       transactionWithdraw2 = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(int(transaction.getAmount()) - int(clientFrom.getBalance(transaction.getFundNumFrom()))))
+                       clientFrom.withdraw(transactionWithdraw1)
+                       clientFrom.withdraw(transactionWithdraw2)
+                       clientTo.deposite(transactionDeposite)
+            #Standard Trasnfer
+            else:
+                transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
+                transactionWithdraw = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(transaction.getAmount()))
+                clientFrom.withdraw(transactionWithdraw)
+                clientTo.deposite(transactionDeposite)
         else:
-            transactionDeposite = Transaction("D " + str(clientTo.getId()) + str(transaction.getFundNumTo()) + " " + str(transaction.getAmount()))
-            transactionWithdraw = Transaction("W " + str(clientFrom.getId()) + str(transaction.getFundNumFrom()) + " " + str(transaction.getAmount()))
-            clientFrom.withdraw(transactionWithdraw)
-            clientTo.deposite(transactionDeposite)
-
+            print(error)
 
     def __checkIdError__(self, transaction):
         error = ""
